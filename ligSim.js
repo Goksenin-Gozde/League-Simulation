@@ -317,21 +317,3 @@ takimlar.forEach(function(element)
 takim.yenenGol+"         "+takim.averajHesapla()+"   ");
   i++;
 });
-
-/*fikstur.forEach(function(element){
-  let i =0;
-  console.log(fikstur[i++]);
-
-})*/
-/*let fikstur = fiksturOlustur(takimlar);
-fikstur.forEach(function(element){
-  let i=0;
-  console.log(fikstur[i]);
-  i++;
-
-})*/
-//takimlariYazdir(takimlar);
-/*let karsilasmalar = [];
-karsilasmalar.push({evSahibi:takimlar[0],deplasman:takimlar[1]});
-console.log(karsilasmalar.pop());
-*/
