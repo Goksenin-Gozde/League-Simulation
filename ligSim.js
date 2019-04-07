@@ -68,7 +68,7 @@ const takimlar = [
   },
   {
     isim : "Antalyaspor",
-    guc : 2
+    guc : 4
   },
   {
     isim : "Trabzonspor",
@@ -84,7 +84,7 @@ const takimlar = [
   },
   {
     isim : "Kayserispor",
-    guc : 7
+    guc : 4
   },
   {
     isim : "Kasımpaşa  ",
@@ -288,7 +288,7 @@ function zarAt(zarAtanGuc,guc2)
     ancak pratikte yıl sonu puanlamasında çok güçlü takımların şampiyon olma yüzdesi
     yeterince fazla değildi. Bu sebeple FRP oyunlarındaki gibi zarlarına ek puan ekledim.
     Güçlü olan taraf (Güçlü/zayıf) kadar zarına ek puan alıyor.
-    yani gücü 9 zarı 6 , gücü 4 zarı 7 olan iki takım içinspect
+    yani gücü 9 zarı 6 , gücü 4 zarı 7 olan iki takım için
     9//4 = 2 => 6+2 = 8 şeklinde güçlünün son zarı 8 oluyor.
     Bu algoritma ile güçlü takımlar daha fazla şampiyon olurken birkaç denemeden sonra
     gücü 2 olan takımların bile şampiyon olabildiğini gördüm. Gerçek Türkiye liginde de sonuç
