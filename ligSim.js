@@ -177,8 +177,8 @@ function ilkYariMaclariOyna(fikstur)
   {
     for(let j = 0; j<toplamGol;j++)
     {
-    evSahibiZari = zarAt(evSahibi.guc+2);
-    deplasmanZari = zarAt(deplasman.guc);
+    evSahibiZari = zarAt(evSahibi.guc+2,deplasman.guc);
+    deplasmanZari = zarAt(deplasman.guc,evSahibi.guc+2);
     if(evSahibiZari > deplasmanZari)
     {
       evSahibiGol++;
@@ -241,8 +241,9 @@ function ikinciYariMaclariOyna(fikstur)
   {
     for(let j = 0; j<toplamGol;j++)
     {
-    evSahibiZari = zarAt(evSahibi.guc);
-    deplasmanZari = zarAt(deplasman.guc+2);
+    evSahibiZari = zarAt(evSahibi.guc,deplasman.guc);
+    deplasmanZari = zarAt(deplasman.guc+2,evSahibi.guc);
+    // Bütün fikstürü değiştirmek yerine avantajlı tarafı değiştirip işlem yükünden kurtulduk.
     if(evSahibiZari > deplasmanZari)
     {
       evSahibiGol++;
@@ -279,19 +280,34 @@ function ikinciYariMaclariOyna(fikstur)
   })
 
 }
-function zarAt(guc)
+function zarAt(zarAtanGuc,guc2)
 {
-  //2 takım da gücü kadar zar atar en yüksek zarı atan kazanır. Bir takım 9 atarsa direkt kazanır
-  //Bu sayede güçlü olan daha avantajlı olur ancak güçsüzün de kazanma şansı vardır
+  /*
+    Başta fikir iki tarafın da kendi gücü sayısınca zar atmasıydı. Böylece gücü
+    8 olan bir takım gücü 4 olan takıma göre 2 kat fazla sefer zar atmış olacaktı.
+    ancak pratikte yıl sonu puanlamasında çok güçlü takımların şampiyon olma yüzdesi
+    yeterince fazla değildi. Bu sebeple FRP oyunlarındaki gibi zarlarına ek puan ekledim.
+    Güçlü olan taraf (Güçlü/zayıf) kadar zarına ek puan alıyor.
+    yani gücü 9 zarı 6 , gücü 4 zarı 7 olan iki takım içinspect
+    9//4 = 2 => 6+2 = 8 şeklinde güçlünün son zarı 8 oluyor.
+    Bu algoritma ile güçlü takımlar daha fazla şampiyon olurken birkaç denemeden sonra
+    gücü 2 olan takımların bile şampiyon olabildiğini gördüm. Gerçek Türkiye liginde de sonuç
+    aşağı yukarı bu şekilde.
+  */
   let max = 0;
   let zar;
-  for(let i = 0;i<guc;i++)
+  let avantaj = zarAtanGuc/guc2
+  if (avantaj > 1)
+  {
+    avantaj = Math.floor(avantaj);
+  }
+  for(let i = 0;i<zarAtanGuc;i++)
   {
     zar = Math.random()*10;
     if(zar == 9) return 10;
     max = zar>max ? zar:max;
   }
-  return zar;
+  return zar+avantaj;
 
 }
 
